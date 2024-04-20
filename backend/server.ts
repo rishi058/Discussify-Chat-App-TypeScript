@@ -1,17 +1,27 @@
-// Importing module
 import express from "express";
+import dotenv from "dotenv";
+import cookieParser from "cookie-parser";
 
-const app = express();
-const PORT: Number = 3000;
+import authRoutes from "./routes/auth.routes";
+import messageRoutes from "./routes/message.routes";
+import userRoutes from "./routes/user.routes";
 
-// Handling GET / Request
-app.get("/", (req, res) => {
-  res.send("Welcome to typescript backend!");
-});
+import connectToMongoDB from "./db/connectToMongoDB";
+import { app, server } from "./socket/socket";
 
-// Server setup
-app.listen(PORT, () => {
-  console.log(
-    "The application is listening " + "on port http://localhost:" + PORT
-  );
+dotenv.config();
+
+const PORT = process.env.PORT || 3000;
+
+app.use(express.json()); // to parse the incoming requests with JSON payloads (from req.body)
+app.use(cookieParser());
+
+app.use("/api/auth", authRoutes);
+app.use("/api/messages", messageRoutes);
+app.use("/api/users", userRoutes);
+
+
+server.listen(PORT, () => {
+	connectToMongoDB();
+	console.log(`Server Running on port ${PORT}`);
 });
