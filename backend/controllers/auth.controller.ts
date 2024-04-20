@@ -1,6 +1,6 @@
 import bcrypt from 'bcrypt';
 import { Request, Response } from 'express';
-import User from "../models/user.model.js";
+import User from "../models/user.model";
 import generateTokenAndSetCookie from "../utils/generateToken";
 
 export const signup = async (req: Request, res: Response) => {
@@ -57,6 +57,7 @@ export const signup = async (req: Request, res: Response) => {
 export const login = async (req: Request, res: Response) => {
 	try {
 		const { username, password } = req.body;
+
 		const user = await User.findOne({ username });
 		const isPasswordCorrect = await bcrypt.compare(password, user?.password || "");
 

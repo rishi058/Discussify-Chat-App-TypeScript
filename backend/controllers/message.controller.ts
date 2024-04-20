@@ -1,12 +1,12 @@
 import Conversation from "../models/conversation.model";
 import { Request, Response } from 'express';
-import Message from "../models/message.model.js";
+import Message from "../models/message.model";
 import { getReceiverSocketId, io } from "../socket/socket";
 
 export const sendMessage = async (req: Request, res: Response) => {
 	try {
 		const { message } = req.body;
-		const { id: receiverId } = req.params;
+		const { receiverId } = req.query;
 		const senderId = req.userId;
 
 		let conversation = await Conversation.findOne({
@@ -36,7 +36,7 @@ export const sendMessage = async (req: Request, res: Response) => {
 		await Promise.all([conversation.save(), newMessage.save()]);
 
 		// SOCKET IO FUNCTIONALITY WILL GO HERE
-		const receiverSocketId = getReceiverSocketId(receiverId);
+		const receiverSocketId = getReceiverSocketId(receiverId?.toString() ?? '');
 		if (receiverSocketId) {
 			// io.to(<socket_id>).emit() used to send events to specific client
 			io.to(receiverSocketId).emit("newMessage", newMessage);
@@ -51,7 +51,7 @@ export const sendMessage = async (req: Request, res: Response) => {
 
 export const getMessages = async (req: Request, res: Response) => {
 	try {
-		const { id: userToChatId } = req.params;
+		const { userToChatId } = req.query;
 		const senderId = req.userId;
 
 		const conversation = await Conversation.findOne({
