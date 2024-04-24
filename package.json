@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "@types/dom-view-transitions": "^1.0.4"
+  }
+}
