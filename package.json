@@ -1,5 +1,6 @@
 {
   "dependencies": {
-    "@types/dom-view-transitions": "^1.0.4"
+    "@types/dom-view-transitions": "^1.0.4",
+    "socket.io-client": "^4.7.5"
   }
 }
