@@ -5,16 +5,16 @@ import generateTokenAndSetCookie from "../utils/generateToken";
 
 export const signup = async (req: Request, res: Response) => {
 	try {
-		const { fullName, username, password, confirmPassword, gender } = req.body;
+		const { username, email , password, confirmPassword, gender } = req.body;
 
 		if (password !== confirmPassword) {
 			return res.status(400).json({ error: "Passwords don't match" });
 		}
 
-		const user = await User.findOne({ username });
+		const user = await User.findOne({ $or: [{ email }, { username: username }] });
 
 		if (user) {
-			return res.status(400).json({ error: "Username already exists" });
+			return res.status(400).json({ error: "Email or username already in use" });
 		}
 
 		// HASH PASSWORD HERE
@@ -27,8 +27,8 @@ export const signup = async (req: Request, res: Response) => {
 		const girlProfilePic = `https://avatar.iran.liara.run/public/girl?username=${username}`;
 
 		const newUser = new User({
-			fullName,
 			username,
+			email,
 			password: hashedPassword,
 			gender,
 			profilePic: gender === "male" ? boyProfilePic : girlProfilePic,
@@ -41,8 +41,9 @@ export const signup = async (req: Request, res: Response) => {
 
 			res.status(201).json({
 				_id: newUser._id,
-				fullName: newUser.fullName,
+				email : newUser.email,
 				username: newUser.username,
+				gender: newUser.gender,
 				profilePic: newUser.profilePic,
 			});
 		} else {
@@ -56,9 +57,9 @@ export const signup = async (req: Request, res: Response) => {
 
 export const login = async (req: Request, res: Response) => {
 	try {
-		const { username, password } = req.body;
+		const { email, password } = req.body;
 
-		const user = await User.findOne({ username });
+		const user = await User.findOne({ email });
 		const isPasswordCorrect = await bcrypt.compare(password, user?.password || "");
 
 		if (!user || !isPasswordCorrect) {
@@ -69,8 +70,9 @@ export const login = async (req: Request, res: Response) => {
 
 		res.status(200).json({
 			_id: user._id,
-			fullName: user.fullName,
+			email: user.email,
 			username: user.username,
+			gender: user.gender,
 			profilePic: user.profilePic,
 		});
 	} catch (error) {
