@@ -1,7 +1,14 @@
 import { useSocketContext } from "../../context/SocketContext";
 import useConversation from "../../zustand/useConversation";
+import ConversationModel from "../../interfaces/ConversationModel";
 
-const Conversation = ({ conversation, lastIdx, emoji }) => {
+interface ConversationProps {
+	conversation: ConversationModel;
+	lastIdx: boolean;
+	emoji: string;
+}
+
+const Conversation = ({ conversation, lastIdx, emoji } : ConversationProps) => {
 	const { selectedConversation, setSelectedConversation } = useConversation();
 
 	const isSelected = selectedConversation?._id === conversation._id;
@@ -24,7 +31,7 @@ const Conversation = ({ conversation, lastIdx, emoji }) => {
 
 				<div className='flex flex-col flex-1'>
 					<div className='flex gap-3 justify-between'>
-						<p className='font-bold text-gray-200'>{conversation.fullName}</p>
+						<p className='font-bold text-gray-200'>{conversation.username}</p>
 						<span className='text-xl'>{emoji}</span>
 					</div>
 				</div>
@@ -34,4 +41,5 @@ const Conversation = ({ conversation, lastIdx, emoji }) => {
 		</>
 	);
 };
+
 export default Conversation;

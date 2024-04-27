@@ -1,41 +1,59 @@
+/* eslint-disable react-refresh/only-export-components */
 import { createContext, useState, useEffect, useContext } from "react";
 import { useAuthContext } from "./AuthContext";
-import io from "socket.io-client";
+import { io, Socket } from "socket.io-client";
 
-const SocketContext = createContext();
-
-export const useSocketContext = () => {
-	return useContext(SocketContext);
+// Define a default value for the context
+const defaultContextValue = {
+  socket: null,
+  onlineUsers: [],
 };
 
-export const SocketContextProvider = ({ children }) => {
-	const [socket, setSocket] = useState(null);
-	const [onlineUsers, setOnlineUsers] = useState([]);
-	const { authUser } = useAuthContext();
+// Create the context with the default value
+const SocketContext = createContext<{
+  socket: Socket | null;
+  onlineUsers: string[];
+}>(defaultContextValue);
 
-	useEffect(() => {
-		if (authUser) {
-			const socket = io("https://chat-app-yt.onrender.com", {
-				query: {
-					userId: authUser._id,
-				},
-			});
+export const useSocketContext = () => {
+  return useContext(SocketContext);
+};
 
-			setSocket(socket);
+interface SocketContextProviderProps {
+  children: React.ReactNode;
+}
 
-			// socket.on() is used to listen to the events. can be used both on client and server side
-			socket.on("getOnlineUsers", (users) => {
-				setOnlineUsers(users);
-			});
+export const SocketContextProvider = ({ children }: SocketContextProviderProps) => {
+  const [socket, setSocket] = useState<Socket | null>(null);
+  const [onlineUsers, setOnlineUsers] = useState<string[]>([]);
+  const { authUser } = useAuthContext() || {};
 
-			return () => socket.close();
-		} else {
-			if (socket) {
-				socket.close();
-				setSocket(null);
-			}
-		}
-	}, [authUser]);
+  useEffect(() => {
+    if (authUser) {
+      const socket: Socket = io("http://localhost:3000/", {
+        query: { userId: authUser._id },
+      });
+      setSocket(socket);
 
-	return <SocketContext.Provider value={{ socket, onlineUsers }}>{children}</SocketContext.Provider>;
+      // socket.on() is used to listen to the events. can be used both on client and server side
+      socket.on("getOnlineUsers", (users) => {
+        setOnlineUsers(users);
+      });
+
+      return () => {
+        socket.close();
+      };
+    } else {
+      if (socket) {
+        socket.close();
+        setSocket(null);
+      }
+    }
+  }, [socket, authUser]);
+
+  return (
+    <SocketContext.Provider value={{ socket, onlineUsers }}>
+      {children}
+    </SocketContext.Provider>
+  );
 };

@@ -8,6 +8,7 @@ import userRoutes from "./routes/user.routes";
 
 import connectToMongoDB from "./db/connectToMongoDB";
 import { app, server } from "./socket/socket";
+import { customLogger } from "./logger";
 
 dotenv.config();
 
@@ -15,6 +16,7 @@ const PORT = process.env.PORT || 3000;
 
 app.use(express.json()); // to parse the incoming requests with JSON payloads (from req.body)
 app.use(cookieParser());
+app.use(customLogger());
 
 app.use("/api/auth", authRoutes);
 app.use("/api/messages", messageRoutes);

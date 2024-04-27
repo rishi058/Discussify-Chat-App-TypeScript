@@ -1,19 +1,16 @@
 import { createContext, useContext, useState } from "react";
+import UserModel from "../interfaces/UserModel";
 
 interface AuthContextType {
-  authUser: string | null;
-  setAuthUser: React.Dispatch<React.SetStateAction<string | null>>;
+  authUser: UserModel | null;
+  setAuthUser: React.Dispatch<React.SetStateAction<UserModel | null>>;
 }
 
 export const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 // eslint-disable-next-line react-refresh/only-export-components
 export const useAuthContext = () => {
-  const context = useContext(AuthContext);
-  if (!context) {
-    throw new Error("useAuthContext must be used within an AuthContextProvider");
-  }
-  return context;
+  return useContext(AuthContext);
 };
 
 interface AuthContextProviderProps {
@@ -21,8 +18,8 @@ interface AuthContextProviderProps {
 }
 
 export const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
-  const [authUser, setAuthUser] = useState<string | null>(
-    localStorage.getItem("userId") || null
+  const [authUser, setAuthUser] = useState<UserModel | null>(
+    JSON.parse(localStorage.getItem("chat-user") || "null")
   );
 
   const value: AuthContextType = {
