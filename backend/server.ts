@@ -1,6 +1,7 @@
 import express from "express";
 import dotenv from "dotenv";
 import cookieParser from "cookie-parser";
+import cors from "cors";
 
 import authRoutes from "./routes/auth.routes";
 import messageRoutes from "./routes/message.routes";
@@ -15,6 +16,7 @@ dotenv.config();
 const PORT = process.env.PORT || 3000;
 
 app.use(express.json()); // to parse the incoming requests with JSON payloads (from req.body)
+app.use(cors());
 app.use(cookieParser());
 app.use(customLogger());
 
