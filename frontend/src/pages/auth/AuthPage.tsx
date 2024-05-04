@@ -109,8 +109,8 @@ function AuthPage() {
         <div className="toggle-container">
           <div className="toggle">
             <div className="toggle-panel toggle-left">
-              <h1>Hello, Friend !</h1>
-              <p>Already have an account ? Sign In here.</p>
+              <h1>  Hello, Friend !</h1>
+              <p>   Already have an account ? Sign In here.</p>
               <button onClick={toggleForm}>Sign In</button>
             </div>
             <div className="toggle-panel toggle-right">
