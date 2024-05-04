@@ -51,7 +51,7 @@ function AuthPage() {
         <div className={`form-container ${isSignUp ? "sign-up" : "sign-in"}`}>
           {isSignUp ? (
             <form onSubmit={handleSignup}>
-              <h1>Create Account</h1>
+              <div className="label-text text-slate-600 font-bold text-xl">Create Account</div>
               <input
                 type="text"
                 placeholder="Username"
@@ -81,7 +81,7 @@ function AuthPage() {
             </form>
           ) : (
             <form onSubmit={handleLogin}>
-              <h1>Sign In</h1>
+              <div className="label-text text-slate-600 font-bold text-xl">Sign In</div>
               <input
                 type="email"
                 placeholder="Enter Email"

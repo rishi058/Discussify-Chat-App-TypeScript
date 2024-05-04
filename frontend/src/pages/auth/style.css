@@ -101,10 +101,10 @@
 
 .toggle-container {
     position: absolute;
-    top: 0;
+    top: -1%;    /* This */
     left: 50%;
-    width: 50%;
-    height: 100%;
+    width: 55%;      /* This */
+    height: 102%;   /* This */
     overflow: hidden;
     transition: all 0.6s ease-in-out;
     border-radius: 150px 0 0 100px;
@@ -155,6 +155,7 @@
 }
 
 .toggle-left {
+    left: 2%;    /* This */
     transform: translateX(-200%);
 }
 
@@ -163,7 +164,7 @@
 }
 
 .toggle-right {
-    right: 0;
+    right: 2%;   /* This */
     transform: translateX(0);
 }
 
@@ -171,7 +172,8 @@
     transform: translateX(200%);
 }
 
-/* style2.css */
+/*--------------------------------------------style2.css-------------------------------------------------*/
+
 @media screen and (max-width: 650px) {
     .container {
         width: 95%;
@@ -208,16 +210,29 @@
         z-index: 1;
     }
 
+    .container .toggle{
+        border-radius:  0 0 0 0;
+    }
+
     .toggle-container {
         position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
+        top: -1%;    /* This */
+        left: 0%;
+        width: 108%; /* This */
         height: 30%;
         overflow: hidden;
         transition: all 0.6s ease-in-out;
-        border-radius: 0 0 50px 50px;
+        border-radius:  0 0 0 0;
         z-index: 1000;
+    }
+
+    .container.active .toggle-container{  /* This */
+        left: -1%;
+        height: 31%;
+    }
+
+    .container.active .toggle{   /* This */
+        left: -110%;
     }
 
     .toggle-container button {
@@ -240,7 +255,7 @@
 
     .container.active .toggle-container {
         transform: translateY(100%);
-        border-radius: 50px 50px 0 0;
+        border-radius: 0 0 0 0;
         position: absolute;
         top: 40%;
     }
