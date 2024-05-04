@@ -3,4 +3,5 @@ export default interface UserModel {
     username: string;
     profilePic: string;
     email: string;
+    gender: string;
 }

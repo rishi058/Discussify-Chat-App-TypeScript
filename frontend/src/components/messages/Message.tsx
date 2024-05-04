@@ -4,7 +4,7 @@ import useConversation from "../../zustand/useConversation";
 import MessageModel  from "../../interfaces/MessageModel"
 
 const Message = ({ message }: { message: MessageModel }) => {
-	const { authUser } = useAuthContext() || {};
+	const { authUser } = useAuthContext();
 	const { selectedConversation } = useConversation();
 	const fromMe = message?.senderId === authUser?._id;
 	const formattedTime = extractTime(message.createdAt);

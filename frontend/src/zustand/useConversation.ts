@@ -1,16 +1,23 @@
 import { create } from "zustand";
-import ConversationModel  from "../interfaces/ConversationModel";
+import UserModel from "../interfaces/UserModel";
 import MessageModel from "../interfaces/MessageModel";
 
 const useConversation = create<{
-  selectedConversation: ConversationModel | null;
-  setSelectedConversation: (selectedConversation: ConversationModel | null) => void;
+  selectedConversation: UserModel | null;
+
+  setSelectedConversation: (
+    selectedConversation: UserModel | null
+  ) => void;
+
   messages: MessageModel[];
+
   setMessages: (messages: MessageModel[]) => void;
+
 }>((set) => ({
+
   selectedConversation: null,
-  setSelectedConversation: (selectedConversation: ConversationModel | null) =>
-    set({ selectedConversation }),
+
+  setSelectedConversation: (selectedConversation: UserModel | null) =>  set({ selectedConversation }),
   messages: [],
   setMessages: (messages: MessageModel[]) => set({ messages }),
 }));

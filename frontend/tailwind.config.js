@@ -1,4 +1,6 @@
 /** @type {import('tailwindcss').Config} */
+import daisyui from "daisyui";
+
 export default {
   darkMode: "class", // Enable dark mode based on class
   content: [
@@ -15,6 +17,8 @@ export default {
       },
     },
   },
-  plugins: [],
+  plugins: [
+    daisyui,
+  ],
 }
 

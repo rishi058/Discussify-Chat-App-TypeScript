@@ -1,18 +1,13 @@
 import useGetConversations from "../../hooks/useGetConversations";
+import UserModel from "../../interfaces/UserModel";
 import { getRandomEmoji } from "../../utils/emojis";
 import Conversation from "./Conversation";
-
-interface ConversationModel {
-	_id: string;
-	username: string;
-	profilePic: string;
-}
 
 const Conversations = () => {
 	const { loading, conversations } = useGetConversations();
 	return (
-		<div className='py-2 flex flex-col overflow-auto'>
-			{conversations.map((conversation : ConversationModel, idx) => (
+		<div className='py-5 flex flex-col overflow-auto'>
+			{conversations.map((conversation : UserModel, idx) => (
 				<Conversation
 					key={conversation._id}
 					conversation={conversation}

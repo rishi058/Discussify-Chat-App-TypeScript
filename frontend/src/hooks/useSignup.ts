@@ -1,14 +1,8 @@
 import { useState } from "react";
 import toast from "react-hot-toast";
 import { useAuthContext } from "../context/AuthContext";
-
-interface SignupData {
-    fullName: string;
-    username: string;
-    password: string;
-    confirmPassword: string;
-    gender: string;
-  }
+import SignupData from "../interfaces/SignupData";
+import AuthApi from "../api/auth_api";
 
 const useSignup = () => {
 	const [signupLoading, setLoading] = useState(false);
@@ -19,24 +13,14 @@ const useSignup = () => {
 		if (!success) return;
 
 		setLoading(true);
-		try {
-			const res = await fetch("/api/auth/signup", {
-				method: "POST",
-				headers: { "Content-Type": "application/json" },
-				body: JSON.stringify({ fullName, username, password, confirmPassword, gender }),
-			});
 
-			const data = await res.json();
-			if (data.error) {
-				throw new Error(data.error);
-			}
-			localStorage.setItem("chat-user", JSON.stringify(data));
-			setAuthUser(data);
-		} catch (error) {
-			toast.error((error as Error).message);
-		} finally {
-			setLoading(false);
+		const user = await new AuthApi().signup({ fullName, username, password, confirmPassword, gender });
+		if(user){
+			localStorage.setItem("chat-user", JSON.stringify(user));
+			setAuthUser(user);				
 		}
+
+		setLoading(false);
 	};
 
 	return { signupLoading, signup };

@@ -49,7 +49,7 @@ export const SocketContextProvider = ({ children }: SocketContextProviderProps) 
         setSocket(null);
       }
     }
-  }, [socket, authUser]);
+  }, [authUser]);
 
   return (
     <SocketContext.Provider value={{ socket, onlineUsers }}>
