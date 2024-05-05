@@ -1,30 +1,36 @@
-# React + TypeScript + Vite
+# Discussify Typescript FrontEnd
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is a MERN based basic chat app built using Typescript. The objective of this project is to demonstrate the following:
 
-Currently, two official plugins are available:
+- Socket IO (realtime updates) + Rest API fetching.
+- Animated Theme Switching.
+- Use of custom Hooks and Context.
+- Scalable Directory Structure + Modular Coding Style.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Table of Contents
 
-## Expanding the ESLint configuration
+- [Tech Stack and Libraries](#tech-stack-and-libraries)
+- [Project Snapshot](#project-snapshot)
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
 
-- Configure the top-level `parserOptions` property like this:
+## Tech Stack and Libraries
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
+The following technologies and libraries were used in this project:
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+- Vite + React + Typescript
+- Tailwind CSS + Daisy UI
+- Axios + Socket-io-Client
+- Zustand (state management)
+- React Router
+- React Icons + React Hot toast
+
+## Project Snapshot
+
+
+## Features which can be added :-
+ - App should remember the selected theme of user. 
+ - Add a feature for email verfication via otp.
+ - User should be able to send images.
+ - Pagination on Messages.
+
+Feel free to explore the project and make any modifications as needed.

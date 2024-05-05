@@ -26,7 +26,7 @@ interface SocketContextProviderProps {
 export const SocketContextProvider = ({ children }: SocketContextProviderProps) => {
   const [socket, setSocket] = useState<Socket | null>(null);
   const [onlineUsers, setOnlineUsers] = useState<string[]>([]);
-  const { authUser } = useAuthContext() || {};
+  const { authUser } = useAuthContext();
 
   useEffect(() => {
     if (authUser) {

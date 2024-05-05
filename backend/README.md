@@ -1,9 +1,26 @@
 # Discussify Typescript Backend 
 
+ - This chat app is made to showcase the use-case of Sockets.
+ - This app is made using Typescript for its rich ecosystem.
+ - Used Mongo(for DB) + Express(web framework) + many other packages.
+
 ## Table of Contents
 
+- [Setup Environment Variables](#setup-environment-variables)
 - [Rest Api Endpoints](#Endpoints)
+- [Socket Connection](#Socket)
 - [Logger](#Logger)
+
+## Setup Environment Variables
+
+    1. PORT=3000
+
+    2. JWT_SECRET="=asd932veJSN3r2=23SJDedsd33" [Used to generate token]
+
+    3. NODE_ENV="development"   [Used in generateToken File to secure cookie]
+   
+    4. MONGO_DB_URI="mongodb+srv://......."    [Used in connecting to MongoDB]
+
 
 ## Endpoints
 
@@ -119,6 +136,22 @@
         
         Error Response : {"error" : "Error Message"} 
 
+## Socket
+
+    - Implementation paths
+    
+        Server Side ->
+
+            1. /socket/socket.ts    [For Establishing Socket Connection and Emiting Data of Online Users]
+
+            2. /controllers/message.controller.ts   [For Emitting A New Message to user]
+
+        Client Side ->
+
+            1. src/context/SocketContext.tsx  [For Establishing Socket Connection & Listen for Online Users]
+
+            2. src/hooks/useListenMessage.tsx [Listen for NewMessage]
+
 ## Logger
     
     - Implemented logging middleware to record detailed API access information, enhancing traceability and monitoring of note-related activities.
@@ -145,5 +178,3 @@
 
       
     - Made by using Morgan and chalk npm pacakge.
-
-## Logger Snaphot  
