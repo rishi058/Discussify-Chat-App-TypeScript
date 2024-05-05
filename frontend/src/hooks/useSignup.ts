@@ -4,7 +4,7 @@ import { useAuthContext } from "../context/AuthContext";
 import SignupData from "../interfaces/SignupData";
 import AuthApi from "../api/auth_api";
 
-const useSignup = () => {
+function useSignup() {
 	const [signupLoading, setLoading] = useState(false);
 	const { setAuthUser } = useAuthContext();
 
@@ -24,7 +24,7 @@ const useSignup = () => {
 	};
 
 	return { signupLoading, signup };
-};
+}
 
 export default useSignup;
 

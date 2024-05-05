@@ -3,7 +3,7 @@ import { extractTime } from "../../utils/extractTime";
 import useConversation from "../../zustand/useConversation";
 import MessageModel  from "../../interfaces/MessageModel"
 
-const Message = ({ message }: { message: MessageModel }) => {
+function Message({ message }: { message: MessageModel }) {
 	const { authUser } = useAuthContext();
 	const { selectedConversation } = useConversation();
 	const fromMe = message?.senderId === authUser?._id;
@@ -25,5 +25,6 @@ const Message = ({ message }: { message: MessageModel }) => {
 			<div className='chat-footer opacity-50 text-xs flex gap-1 items-center'>{formattedTime}</div>
 		</div>
 	);
-};
+}
+
 export default Message;

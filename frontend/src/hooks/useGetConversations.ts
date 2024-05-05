@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import UserApi from "../api/user_api";
 import UserModel from "../interfaces/UserModel";
 
-const useGetConversations = () => {
+function useGetConversations() {
 	const [loading, setLoading] = useState(false);
 	const [conversations, setConversations] = useState<UserModel[]>([]);
 
@@ -20,6 +20,6 @@ const useGetConversations = () => {
 	}, []);
 
 	return { loading, conversations };
-};
+}
 
 export default useGetConversations;

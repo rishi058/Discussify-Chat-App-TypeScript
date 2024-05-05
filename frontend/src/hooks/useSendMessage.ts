@@ -2,7 +2,7 @@ import { useState } from "react";
 import useConversation from "../zustand/useConversation";
 import MessageApi from "../api/message_api";
 
-const useSendMessage = () => {
+function useSendMessage() {
 	const [loading, setLoading] = useState(false);
 	const { messages, setMessages, selectedConversation } = useConversation();
 
@@ -19,5 +19,6 @@ const useSendMessage = () => {
 	};
 
 	return { sendMessage, loading };
-};
+}
+
 export default useSendMessage;

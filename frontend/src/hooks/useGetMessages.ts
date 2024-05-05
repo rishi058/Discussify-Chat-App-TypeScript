@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import useConversation from "../zustand/useConversation";
 import MessageApi from "../api/message_api";
 
-const useGetMessages = () => {
+function useGetMessages() {
 	const [loading, setLoading] = useState(false);
 	const { messages, setMessages, selectedConversation } = useConversation();
 
@@ -20,5 +20,6 @@ const useGetMessages = () => {
 	}, [selectedConversation?._id, setMessages]);
 
 	return { messages, loading };
-};
+}
+
 export default useGetMessages;

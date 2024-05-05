@@ -4,7 +4,7 @@ import MessageSkeleton from "../skeletons/MessageSkeleton";
 import Message from "./Message";
 import useListenMessages from "../../hooks/useListenMessages";
 
-const Messages = () => {
+function Messages() {
 	const { messages, loading } = useGetMessages();
 	useListenMessages();
 	const lastMessageRef = useRef<null | HTMLDivElement>(null); 
@@ -31,5 +31,6 @@ const Messages = () => {
 			)}
 		</div>
 	);
-};
+}
+
 export default Messages;

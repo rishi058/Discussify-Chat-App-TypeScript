@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useAuthContext } from "../context/AuthContext";
 import AuthApi from "../api/auth_api";
 
-const useLogout = () => {
+function useLogout(){
 	const [loading, setLoading] = useState(false);
 	const { setAuthUser } = useAuthContext();
 
@@ -17,5 +17,6 @@ const useLogout = () => {
 	};
 
 	return { loading, logout };
-};
+}
+
 export default useLogout;

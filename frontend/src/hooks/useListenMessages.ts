@@ -4,7 +4,7 @@ import useConversation from "../zustand/useConversation";
 
 import notificationSound from "../assets/sounds/notification.mp3";
 
-const useListenMessages = () => {
+function useListenMessages() {
 	const { socket } = useSocketContext();
 	const { messages, setMessages } = useConversation();
 
@@ -18,5 +18,7 @@ const useListenMessages = () => {
 
 		return () => {socket?.off("newMessage");}
 	}, [socket, setMessages, messages]);
-};
+}
+
 export default useListenMessages;
+

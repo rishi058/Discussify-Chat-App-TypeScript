@@ -2,7 +2,7 @@ import MessageContainer from "../../components/messages/MessageContainer";
 import Sidebar from "../../components/sidebar/Sidebar";
 import Drawer from "../../components/drawer/Drawer";
 
-const Home = () => {
+function Home()  {
   return (
     <div className="drawer">
       <input id="my-drawer" type="checkbox" className="drawer-toggle" />
@@ -21,6 +21,6 @@ const Home = () => {
       <Drawer />
     </div>
   );
-};
+}
 
 export default Home;

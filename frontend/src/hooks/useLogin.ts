@@ -3,7 +3,7 @@ import toast from "react-hot-toast";
 import { useAuthContext } from "../context/AuthContext";
 import AuthApi from "../api/auth_api";
 
-const useLogin = () => {
+function useLogin() {
 	const [loginLoading, setLoading] = useState(false);
 	const { setAuthUser } = useAuthContext();
 
@@ -22,7 +22,7 @@ const useLogin = () => {
 	};
 
 	return { loginLoading, login };
-};
+}
 
 export default useLogin;
 
