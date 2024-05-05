@@ -20,7 +20,7 @@ function MessageContainer() {
 			) : (
 				<>
 					{/* Header */}
-					<div className='bg-blue-500/50 px-4 py-2 mb-2' style={{ borderRadius: '0 1.25rem 0 0' }}>
+					<div className='bg-blue-500/50 px-4 py-2 mb-2 rounded-t-2xl sm:rounded-tl-none'>
 						<span className='label-text text-black'>To: </span>{" "}
 						<span className='text-black font-semibold '>{selectedConversation.username}</span>
 					</div>

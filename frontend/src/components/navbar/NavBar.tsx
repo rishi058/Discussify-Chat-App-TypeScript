@@ -15,9 +15,7 @@ const NavBar = () => {
           <label htmlFor="my-drawer" className="sm:hidden">
             <IoMenu size={30} />
           </label>   // Drawer Invoke Button - Daisy UI, displayed only if authUser exists
-        ) : (
-          <div></div> // Empty div if authUser is null
-        )}
+        ): null}
         <div className="flex items-center">
         <img className="h-[25px]" src={appIcon} alt="👻"/>
         <div className="text-lg font-semibold">Discussify</div>
