@@ -1,6 +1,6 @@
 export default interface SignupData {
-    fullName: string;
     username: string;
+    email: string;
     password: string;
     confirmPassword: string;
     gender: string;

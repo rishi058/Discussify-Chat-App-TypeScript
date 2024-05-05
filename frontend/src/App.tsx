@@ -6,10 +6,10 @@ import { useAuthContext } from "./context/AuthContext";
 import Home from "./pages/home/Home";
 
 function App() {
-  const { authUser } = useAuthContext()||{};
+  const { authUser } = useAuthContext();
 
   return (
-    <>
+    <div>
       <NavBar/>
       <div className="bg-gradient-to-r from-blue-50 to-blue-100 dark:bg-gradient-to-r dark:from-gray-800 dark:to-gray-950">
       <Routes>
@@ -18,8 +18,8 @@ function App() {
 			</Routes>
       </div>
       <Toaster/>
-    </>
+    </div>
   )
 }
 
-export default App
+export default App;

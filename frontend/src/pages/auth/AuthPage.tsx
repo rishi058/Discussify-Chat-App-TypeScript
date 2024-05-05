@@ -16,8 +16,8 @@ function AuthPage() {
   const { signupLoading, signup } = useSignup();
 
   const [inputs, setInputs] = useState({
-    fullName: "",
     username: "",
+    email: "",
     password: "",
     confirmPassword: "",
     gender: "",
@@ -28,6 +28,7 @@ function AuthPage() {
   };
 
   const handleSignup = async (e: FormEvent<HTMLFormElement>) => {
+    console.log(inputs);
     e.preventDefault();
     await signup(inputs);
   };
@@ -55,15 +56,15 @@ function AuthPage() {
               <input
                 type="text"
                 placeholder="Username"
-                value={inputs.fullName}
+                value={inputs.username}
                 onChange={(e) => {
-                  setInputs({ ...inputs, fullName: e.target.value });
+                  setInputs({ ...inputs, username: e.target.value });
                 }}
               />
               <input type="email"
                placeholder="Email"
-               value={inputs.username}
-               onChange={(e) => setInputs({ ...inputs, username: e.target.value })}
+               value={inputs.email}
+               onChange={(e) => setInputs({ ...inputs, email: e.target.value })}
                />
               <input type="password"
                placeholder="Password"

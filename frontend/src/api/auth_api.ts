@@ -19,11 +19,11 @@ class AuthApi extends Api {
         }
     }
 
-    async signup({ fullName, username, password, confirmPassword, gender } : SignupData){
+    async signup({username, email, password, confirmPassword, gender } : SignupData){
         try {
             const response = await this.Api.post('api/auth/signup', {
-                fullName : fullName,
                 username : username,
+                email : email,
                 password : password,
                 confirmPassword : confirmPassword,
                 gender : gender

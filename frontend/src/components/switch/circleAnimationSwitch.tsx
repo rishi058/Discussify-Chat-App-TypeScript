@@ -2,6 +2,13 @@ import { useState, useEffect, useRef } from "react";
 import { flushSync } from "react-dom";
 import * as Switch from "./SwitchComponent";
 import { IconMoon, IconSun } from "./Icons";
+import clickSound from "../../assets/sounds/click.mp3";
+
+function playSound(){
+  const sound = new Audio(clickSound);
+	sound.play();
+}
+
 
 export default function CircleAnimationSwitch() {
   const [isDarkMode, setIsDarkMode] = useState(false);
@@ -13,9 +20,12 @@ export default function CircleAnimationSwitch() {
       !document.startViewTransition ||
       window.matchMedia("(prefers-reduced-motion: reduce)").matches
     ) {
+      playSound();
       setIsDarkMode(isDarkMode);
       return;
     }
+
+    playSound();
 
     await document.startViewTransition(() => {
       flushSync(() => {
