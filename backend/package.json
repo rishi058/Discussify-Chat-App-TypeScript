@@ -6,7 +6,8 @@
   "scripts": {
     "start": "node server.ts",
     "dev": "nodemon server.ts",
-    "build": "rimraf dist && tsc",
+    
+    "build": "npm install --prefix ../frontend && npm build --prefix ../frontend && rimraf dist && tsc",
     "ts.check": "tsc --project tsconfig.json",
     "add-build": "git add dist"
   },

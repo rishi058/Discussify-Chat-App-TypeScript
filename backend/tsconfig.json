@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "typeRoots": [
-      "@types",                                          /* List of folders to include type definitions from. ---me */
+      "@types",                                          /* List of folders to include type definitions from. -me */
       "./node_modules/@types",
     ],
     "target": "es2016",                                  /* Set the JavaScript language version for emitted JavaScript and include compatible library declarations. */
