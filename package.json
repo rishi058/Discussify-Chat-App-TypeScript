@@ -1,0 +1,16 @@
+{
+  "name": "discussify-chat-app-typescript",
+  "version": "1.0.0",
+  "description": "A MERN full stack project made using Typescript to showcase Socket IO for real time updates.",
+  "main": "backend/dist/server.js",
+  "dependencies": {},
+  "devDependencies": {},
+  "scripts": {
+    "deploy" : "npm install --prefix frontend && npm install --prefix backend && npm run build --prefix frontend && npm run build --prefix backend",
+    "start" : "npm start --prefix backend",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

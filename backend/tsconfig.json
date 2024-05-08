@@ -20,7 +20,7 @@
     "outDir": "dist",
     "baseUrl": ".",
     "paths": {
-      "*": ["node_modules/*", "src/types/*"]
+      "*": ["node_modules/*", "types/*"]
     },
   },
   "include": ["**/*"]                                 /* Use [./src/] in prefix if you have all files in src directory  */
