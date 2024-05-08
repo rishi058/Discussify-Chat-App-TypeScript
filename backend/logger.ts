@@ -5,7 +5,7 @@ import { Request, Response, NextFunction } from 'express';
 export function customLogger() {
   return (req : Request, res : Response, next : NextFunction) => {
 
-    let resBody : any;
+    let resBody = "";
     let oldSend = res.send;
     
     res.send = function(data) {
@@ -17,8 +17,10 @@ export function customLogger() {
       return JSON.stringify(req.body);
     });
 
-    morgan.format("hackgt", (tokens : any,  req : any, res : any) => {
-      const status = parseInt(tokens.status(req, res)!);
+    morgan.format("customLogger", (tokens : any,  req : any, res : any) => {
+      if(tokens.status(req, res)===undefined){return null;}
+      
+      const status = parseInt(tokens.status(req, res));
       const method = tokens.method(req, res);
       const endpoint = tokens.url(req, res);
       const resTime = tokens['response-time'](req, res);
@@ -40,11 +42,9 @@ export function customLogger() {
       else{
         console.log(chalk.magenta.bold(` ${datetime} | `) + chalk.bgMagenta.bold(` ${status} `) + chalk.magenta.bold(` | ${method} | URL : ${endpoint} | ${resTime} ms | Req-Body : ${reqBody} | Res-Body : ${resBody}`));
       }
-      next();
-      return "";
     });
 
-    const loggerMiddleware = morgan("hackgt");
+    const loggerMiddleware = morgan("customLogger");
 
     loggerMiddleware(req, res, next);
   };
