@@ -9,7 +9,7 @@
     ],
     "routes": [
       {
-        "src": "backend/dist/(.*)",
+        "src": "package.json",
         "dest": "backend/dist/server.js",
         "methods": ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
         "headers": {
