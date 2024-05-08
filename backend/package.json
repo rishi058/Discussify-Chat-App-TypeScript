@@ -6,15 +6,8 @@
   "scripts": {
     "start": "node dist/server.js",
     "dev": "nodemon server.ts",
-    "build": "rimraf dist && tsc",
-    "ts.check": "tsc --project tsconfig.json",
-    "add-build": "git add dist"
+    "build": "tsc"
   },
-  "pre-commit": [
-    "ts.check",
-    "build",
-    "add-build"
-  ],
   "keywords": [],
   "author": "",
   "license": "ISC",
