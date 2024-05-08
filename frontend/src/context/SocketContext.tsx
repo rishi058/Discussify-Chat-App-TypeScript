@@ -30,7 +30,11 @@ export const SocketContextProvider = ({ children }: SocketContextProviderProps) 
 
   useEffect(() => {
     if (authUser) {
-      const socket: Socket = io("http://localhost:3000/", {
+
+      // baseURL = "http://localhost:3000";
+      const baseURL = "https://discussify-chat-app-typescript.onrender.com";
+
+      const socket: Socket = io(baseURL, {
         query: { userId: authUser._id },
       });
       setSocket(socket);
