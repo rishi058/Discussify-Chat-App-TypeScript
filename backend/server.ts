@@ -2,6 +2,7 @@ import express from "express";
 import dotenv from "dotenv";
 import cookieParser from "cookie-parser";
 import cors from "cors";
+import path from "path";
 
 import authRoutes from "./routes/auth.routes";
 import messageRoutes from "./routes/message.routes";
@@ -24,6 +25,17 @@ app.use("/api/auth", authRoutes);
 app.use("/api/messages", messageRoutes);
 app.use("/api/users", userRoutes);
 
+//-------------- Settings to run FE+BE on same port ------------------
+
+const __myDir = path.resolve();
+
+app.use(express.static(path.join(__myDir, "../frontend/dist")));
+
+app.get("*", (req, res) => {
+	res.sendFile(path.join(__myDir, "../frontend", "dist", "index.html"));
+});
+
+//-------------------------------------------------------------------
 
 server.listen(PORT, () => {
 	connectToMongoDB();

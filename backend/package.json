@@ -4,10 +4,17 @@
   "description": "",
   "main": "server.ts",
   "scripts": {
-    "build": "tsc",
     "start": "node server.ts",
-    "dev": "nodemon server.ts"
+    "dev": "nodemon server.ts",
+    "build": "rimraf dist && tsc",
+    "ts.check": "tsc --project tsconfig.json",
+    "add-build": "git add dist"
   },
+  "pre-commit": [
+    "ts.check",
+    "build",
+    "add-build"
+  ],
   "keywords": [],
   "author": "",
   "license": "ISC",
@@ -16,6 +23,7 @@
     "chalk": "^4.1.2",
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
+    "discussify-chat-app-typescript": "file:..",
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
     "jsonwebtoken": "^9.0.2",
