@@ -4,18 +4,10 @@
   "description": "",
   "main": "server.ts",
   "scripts": {
-    "start": "node server.ts",
+    "start": "node dist/server.js",
     "dev": "nodemon server.ts",
-    
-    "build": "npm install --prefix ../frontend && npm build --prefix ../frontend && rimraf dist && tsc",
-    "ts.check": "tsc --project tsconfig.json",
-    "add-build": "git add dist"
+    "build": "tsc"
   },
-  "pre-commit": [
-    "ts.check",
-    "build",
-    "add-build"
-  ],
   "keywords": [],
   "author": "",
   "license": "ISC",
