@@ -3,7 +3,8 @@ import toast from "react-hot-toast";
 
 export default class Api{
     Api : AxiosInstance;
-    baseURL = "http://localhost:3000";
+    // baseURL = "http://localhost:3000";
+    baseURL = "https://discussify-chat-app-typescript.onrender.com";
 
     constructor(){
         this.Api = axios.create({
